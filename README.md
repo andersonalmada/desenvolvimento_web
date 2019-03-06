@@ -3,5 +3,6 @@
 ## Repositório da disciplina 
 
 [Aulas](aulas)
+
 [Exercícios](exercicios)
 
