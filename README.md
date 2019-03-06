@@ -6,5 +6,5 @@
 
 [Exercícios](exercicios)
 
-[Temas](temas)
+[Temas](temas.md)
 
