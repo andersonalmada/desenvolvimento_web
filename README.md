@@ -6,5 +6,5 @@
 
 [Exercícios](exercicios)
 
-[Temas](temas.md)
+[Propostas aceitas](trabalhos_aceitos.pdf)
 
