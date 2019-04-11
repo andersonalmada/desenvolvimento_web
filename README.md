@@ -6,5 +6,4 @@
 
 [Exercícios](exercicios)
 
-[Propostas aceitas](trabalhos_aceitos.pdf)
 
