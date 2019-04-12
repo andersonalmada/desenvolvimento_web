@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="app">
+            <button @click="getUsers">GET ALL</button><br>
+            <ul>
+                <li v-for="usuario in usuarios">{{ usuario.id}} - {{ usuario.name
+                }}</li>
+            </ul>
+            ID: <input type="text" v-model="id"><br>
+            <br><button @click="getUser">GET</button>
+            <p>{{ usuario.name }} </p>
+            Nome: <input type="text" v-model="name"><br>
+            Usuário: <input type="text" v-model="username"><br>
+            <button @click="postUser">POST</button><br>
+            <button @click="deleteUser">DELETE</button><br>
+            <button @click="putUser">PUT</button>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                url: "http://localhost:3000/users",
+                usuarios: [],
+                id: null,
+                usuario: {},
+                name: null,
+                username: null
+            },
+            methods: {
+                getUsers() {
+                    vm = this;
+                    axios.get(this.url).then(function (r) {
+                        console.log(r.data);
+                        vm.usuarios = r.data;
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                },
+                getUser() {
+                    vm = this;
+                    axios.get(this.url + "/" + this.id).then(function (r) {
+                        console.log(r.data);
+                        vm.usuario = r.data;
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                },
+                postUser() {
+                    vm = this;
+                    axios.post(this.url, {
+                        name: vm.name,
+                        username: vm.username
+                    }).then(function (r) {
+                        console.log(r.data);
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                },
+                putUser() {
+                    vm = this;
+                    axios.put(this.url + "/" + this.id, {
+                        name: vm.name,
+                        username: vm.username
+                    }).then(function (r) {
+                        console.log(r.data);
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                },
+                deleteUser() {
+                    axios.delete(this.url + "/" + this.id).then(function (r) {
+                        console.log(r);
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+                
+            }
+        });
+    </script>
+</body>
+
+</html>
